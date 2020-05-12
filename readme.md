@@ -10,10 +10,10 @@ Sometimes you want to host a file on your machine so someone else or you can qui
 
 This is a binary you can run and it will host your currrent directory with manybe a few options.
 
-## Option Ideas
+## Commandline Option
 
-- Port
-- Time ( how long to keep web server open)
+- [x] Port
+- [ ] Time ( how long to keep web server open)
 
 ## Release Build Steps
 > Each block assumes your at root of proejct
