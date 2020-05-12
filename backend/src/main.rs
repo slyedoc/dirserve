@@ -1,23 +1,18 @@
 #![feature(proc_macro_hygiene, decl_macro)]
+
 #[macro_use]
 extern crate rocket;
 
-// 1.
-use crate::routes::{ static_files, get };
+#[macro_use]
+extern crate rocket_contrib;
+
 mod routes;
 
-fn rocket() -> rocket::Rocket {
-    rocket::ignite()
-        .mount(
-            "/",
-            // 2.
-            routes![
-                static_files::file,
-                get::index,
-            ],
-        )
-}
-
 fn main() {
-    rocket().launch();
-}
+    rocket::ignite().mount("/", 
+    routes![ 
+        routes::frontend::index,
+        routes::frontend::files,
+        routes::api::files,
+    ]).launch();
+  }

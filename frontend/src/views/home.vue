@@ -24,16 +24,18 @@
 </template>
 
 <script lang="ts">
+import axios from 'axios'
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Home extends Vue {
-  private files: Array<Record<string, number>> = [];
+  private files: Array<any> = [];
+
 
   mounted() {
-    for (let i = 0; i <= 20; i++) {
-      this.files.push({ name: i, size: i});
-    }
+    axios
+      .get('api/files')
+      .then(response => (this.files = response.data.files))
   }
 }
 </script>
