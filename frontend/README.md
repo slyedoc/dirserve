@@ -1,4 +1,4 @@
-# dirserve (frontdend)
+# dirserve (frontend)
 
 ## Project setup
 ```

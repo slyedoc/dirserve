@@ -10,14 +10,14 @@ Sometimes you want to host a file on your machine so someone else or you can qui
 
 This is a binary you can run and it will host your currrent directory with manybe a few options.
 
-## Commandline Option
+## Command Line Options
 
 - [x] Port
 - [ ] Time ( how long to keep web server open)
 
 ## Release Build Steps
-> Each block assumes your at root of proejct
 
+> Each block assumes your at root of proejct
 
 Build frontend first
 
@@ -35,6 +35,7 @@ cargo build --release
 ```
 
 Copy dirserve to bin
-```
+
+```(bash)
 sudo cp backend/target/release/dirserve /usr/local/bin
 ```
