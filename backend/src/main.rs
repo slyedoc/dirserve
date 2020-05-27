@@ -7,6 +7,7 @@ extern crate rocket;
 extern crate rocket_contrib;
 
 use structopt::StructOpt;
+use rocket_contrib::serve::StaticFiles;
 
 mod routes;
 
@@ -23,17 +24,32 @@ struct Opt {
 fn main() {
     let opt = Opt::from_args();
 
-    let cfg = rocket::config::Config::build(rocket::config::Environment::Development)
+    let cfg = rocket::config::Config::build(rocket::config::Environment::Production)
         .port(opt.port)       
         .unwrap();
 
 
     rocket::custom(cfg)
-    .mount("/", 
+    .mount("/",
+        routes![
+            routes::root::redirect,
+
+        ],
+    )
+    .mount("/public",
         routes![ 
             routes::frontend::index,
             routes::frontend::files,
+        ],
+    )
+    .mount("/api",
+        routes![
+
             routes::api::files,
-        ]
-    ).launch();
+        ],
+    )
+    .mount("/files/",
+        StaticFiles::from(".")
+    )
+    .launch();
   }

@@ -12,7 +12,7 @@
             </thead>
             <tbody>
               <tr v-for="item in files" :key="item.name">
-                <td>{{ item.name }}</td>
+                <td><a :href="`/files/${ item.name }`" download>{{ item.name }}</a></td>
                 <td>{{ item.size }}</td>
               </tr>
             </tbody>
@@ -34,7 +34,7 @@ export default class Home extends Vue {
 
   mounted() {
     axios
-      .get('api/files')
+      .get('/api/files')
       .then(response => (this.files = response.data.files))
   }
 }
